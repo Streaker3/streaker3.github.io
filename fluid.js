@@ -1,7 +1,7 @@
 
 'use strict';
 
-// Pure fluid simulation for <canvas id="fluid">
+// Pure fluid simulation for <canvas id="fluid"> (no analytics, no GUI, no promo)
 const canvas = document.getElementById('fluid');
 resizeCanvas();
 

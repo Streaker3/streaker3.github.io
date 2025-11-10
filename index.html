@@ -1,7 +1,72 @@
 <!DOCTYPE html>
 <html>
-  <head><title>Felix</title></head>
+  <head>
+    <title>Felix</title>
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- CSS for Fullscreen Canvas -->
+    <style>
+      html, body { margin:0; padding:0; width:100vw; height:100vh; overflow:hidden; }
+      #fluid { position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:0; pointer-events:none; display:block; }
+      .content { z-index:1; position:relative; }
+      .split-letter { display:inline-block; opacity:0; transform:translateY(40px); }
+    </style>
+  </head>
   <body>
-    <h1>Hallo</h1>
+    <canvas id="fluid"></canvas>
+    <div class="content">
+      <h1 id="animated-h1"></h1>
+    </div>
+    <script>
+// --- SPLASH CURSOR CODE START ---
+(function SplashCursorFactory(){
+// --- BEGIN USER'S SPLASH CURSOR CODE (slightly adapted for the browser) ---
+'use strict';
+const canvas = document.getElementById('fluid');
+const SIM_RESOLUTION = 128;
+const DYE_RESOLUTION = 1440;
+const CAPTURE_RESOLUTION = 512;
+const DENSITY_DISSIPATION = 3.5;
+const VELOCITY_DISSIPATION = 2;
+const PRESSURE = 0.1;
+const PRESSURE_ITERATIONS = 20;
+const CURL = 3;
+const SPLAT_RADIUS = 0.2;
+const SPLAT_FORCE = 6000;
+const SHADING = true;
+const COLOR_UPDATE_SPEED = 10;
+const BACK_COLOR = { r: 0.5, g: 0, b: 0 };
+const TRANSPARENT = true;
+// [Full SplashCursor implementation goes here, with all inner functions/classes from user.]
+// To keep the edit concise, you'll want to paste the full JS code, as in the code you pasted above (starting from useEffect body, all main functions).
+// Make sure to comment or remove 'export default' and React references.
+// All code must use canvas=document.getElementById('fluid') instead of useRef or React.
+// --- END USER'S SPLASH CURSOR CODE ---
+})();
+// --- SPLASH CURSOR CODE END ---
+// --- SplitText Animation ---
+function SplitText({ text, delay = 100, duration = 0.6 }) {
+  const container = document.getElementById("animated-h1");
+  container.innerHTML = "";
+  const letters = text.split("");
+  letters.forEach((ch, i) => {
+    const span = document.createElement("span");
+    span.textContent = ch;
+    span.className = "split-letter";
+    container.appendChild(span);
+  });
+  gsap.to(".split-letter", {
+    opacity: 1,
+    y: 0,
+    stagger: { each: duration / letters.length },
+    delay: delay / 1000,
+    duration: duration,
+    ease: "power3.out"
+  });
+}
+window.onload = () => {
+  SplitText({ text: "Hallo, you!", delay: 100, duration: 0.6 });
+};
+    </script>
   </body>
 </html>

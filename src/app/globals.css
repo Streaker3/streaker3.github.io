@@ -1,26 +1,155 @@
 @import "tailwindcss";
 
+@layer components {
+  .glass-button-wrap {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+  }
+
+  .glass-button {
+    position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .glass-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 0 20px rgba(124, 58, 237, 0.3);
+    /* Purple glow on hover */
+    transform: translateY(-2px);
+  }
+
+  .glass-button:active {
+    transform: translateY(0);
+    box-shadow:
+      0 2px 4px -1px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-button-text {
+    color: white;
+    font-weight: 500;
+    z-index: 10;
+  }
+
+  /* Primary variant - slightly more purple/visible */
+  .glass-button-primary {
+    background: rgba(124, 58, 237, 0.15);
+    border-color: rgba(124, 58, 237, 0.3);
+  }
+
+  .glass-button-primary:hover {
+    background: rgba(124, 58, 237, 0.25);
+    border-color: rgba(124, 58, 237, 0.5);
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 0 30px rgba(124, 58, 237, 0.5);
+  }
+
+  .glass-button-shadow {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Gradient Colors */
+  --electric-violet: #6A0DFF;
+  --soft-neon-purple: #9C4DFF;
+  --deep-violet-shadow: #2A0A49;
+
+  /* Supporting Neutrals */
+  --almost-black: #0A0A0F;
+  --subtle-surface: #12121A;
+  --card-contrast: #1E1E28;
+
+  /* Accent Highlights */
+  --gentle-lavender: #B28CFF;
+  --clean-white: #FFFFFF;
+  --cool-neutral: #A5A5C7;
+
+  /* Sub-accents */
+  --electric-blue: #2D2AFF;
+  --soft-diffuse: #C6B8FF;
+
+  /* Mapped values for component use */
+  --background: var(--almost-black);
+  --surface: var(--subtle-surface);
+  --accent: var(--electric-violet);
+  --accent-2: var(--soft-neon-purple);
+  --text-primary: var(--clean-white);
+  --text-muted: var(--cool-neutral);
+
+  --font-inter: "Inter", sans-serif;
+
+  /* Rainbow button colors - updated for purple theme */
+  --color-1: 265 100% 68%;
+  /* Purple */
+  --color-2: 280 100% 65%;
+  /* Violet */
+  --color-3: 250 100% 70%;
+  /* Blue-purple */
+  --color-4: 290 80% 75%;
+  /* Light purple */
+  --color-5: 240 90% 60%;
+  /* Deep blue */
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-text-primary: var(--text-primary);
+  --color-text-muted: var(--text-muted);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Additional utility colors */
+  --color-electric-violet: var(--electric-violet);
+  --color-soft-neon-purple: var(--soft-neon-purple);
+  --color-deep-violet-shadow: var(--deep-violet-shadow);
+  --color-gentle-lavender: var(--gentle-lavender);
+  --color-electric-blue: var(--electric-blue);
+  --color-soft-diffuse: var(--soft-diffuse);
+  --color-card-contrast: var(--card-contrast);
+
+  --font-sans: var(--font-inter);
+
+  /* Rainbow animation */
+  --animate-rainbow: rainbow 2s infinite linear;
+
+  @keyframes rainbow {
+    0% {
+      background-position: 0%;
+    }
+
+    100% {
+      background-position: 200%;
+    }
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

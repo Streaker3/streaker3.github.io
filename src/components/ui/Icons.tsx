@@ -1,0 +1,32 @@
+"use client";
+
+export {
+    ArrowLeft,
+    CalendarBlank,
+    Clock,
+    Tag,
+    CaretLeft,
+    CaretRight,
+    Quotes,
+    Check,
+    Plus,
+    Minus,
+    Envelope,
+    CalendarCheck,
+    MapPin,
+    DownloadSimple,
+    Briefcase,
+    GraduationCap,
+    List,
+    X,
+    GithubLogo,
+    LinkedinLogo,
+    DribbbleLogo,
+    PenNib,
+    Aperture,
+    Brain,
+    Code,
+    PlugsConnected,
+    Sliders,
+    RocketLaunch
+} from "phosphor-react";
